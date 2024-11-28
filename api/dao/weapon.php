@@ -31,7 +31,25 @@ function findAllWeapons (string $type = "", int $limit = 10, int $offset = 0) {
 
 function deleteWeapon(string $id) {
     $db = getDatabaseConnection();
+
+    // Supprimer l'arme
     $sql = "DELETE FROM weapon WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute(['id' => $id]);
+    if ($res) {
+        $resViking = deleteWeaponFromVikings($id);
+        return $stmt->rowCount()+$resViking;
+    }
+    return null;
+
+}
+
+function deleteWeaponFromVikings(string $id)
+{
+    $db = getDatabaseConnection();
+
+    // Suprimer l'arme afféctée à un viking
+    $sql = "UPDATE viking SET weaponId = NULL WHERE weaponId = :id";
     $stmt = $db->prepare($sql);
     $res = $stmt->execute(['id' => $id]);
     if ($res) {
@@ -53,7 +71,7 @@ function createWeapon(string $type, int $damage) {
     return null;
 }
 
-function updateWeapon(int $id, string $type, int $damage) {
+function updateWeapon(string $id, string $type, int $damage) {
     $db = getDatabaseConnection();
     $sql = "UPDATE weapon SET type = :type, damage = :damage WHERE id = :id";
     $stmt = $db->prepare($sql);
