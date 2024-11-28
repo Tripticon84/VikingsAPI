@@ -39,3 +39,31 @@ function deleteWeapon(string $id) {
     }
     return null;
 }
+
+function createWeapon(string $type, int $damage) {
+    $db = getDatabaseConnection();
+    $sql = "INSERT INTO weapon (type, damage) VALUES (:type, :damage)";
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute([
+        $type => 'type',
+        $damage => 'damage'
+    ]);
+    if($res)
+        return $db->lastInsertId();
+    return null;
+}
+
+function updateWeapon(int $id, string $type, int $damage) {
+    $db = getDatabaseConnection();
+    $sql = "UPDATE weapon SET type = :type, damage = :damage WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute([
+        'id' => $id,
+        'type' => $type,
+        'damage' => $damage
+    ]);
+    if ($res) {
+        return $stmt->rowCount();
+    }
+    return null;
+}
