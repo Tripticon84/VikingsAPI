@@ -48,16 +48,16 @@ CREATE TABLE `weapon`(
 --
 
 INSERT INTO `viking` (`id`, `name`, `attack`, `defense`, `health`) VALUES
-(1, 'Ragnar', 200, 150, 300),
-(2, 'Floki', 150, 80, 350),
-(3, 'Lagertha', 300, 200, 200),
-(4, 'Björn', 350, 200, 100);
+  (1, 'Ragnar', 200, 150, 300),
+  (2, 'Floki', 150, 80, 350),
+  (3, 'Lagertha', 300, 200, 200),
+  (4, 'Björn', 350, 200, 100);
 
 INSERT INTO `weapon` (`id`, `type`, `damage`) VALUES
-(1, 'Spear', 80),
-(2, 'Great Sword', 300),
-(3, 'Sword', 100 ),
-(4, 'Axe', 150);
+  (1, 'Spear', 80),
+  (2, 'Great Sword', 300),
+  (3, 'Sword', 100 ),
+  (4, 'Axe', 150);
 
 --
 -- Index pour les tables déchargées
@@ -84,11 +84,12 @@ ALTER TABLE `viking`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 
+-- Ajout de la colonne `weaponId` à la table `viking` et création de la clé étrangère
 ALTER TABLE `viking`
-ADD COLUMN `weaponId` INT NULL;
+  ADD COLUMN `weaponId` INT NULL;
 
 ALTER TABLE `viking`
-ADD FOREIGN KEY (`weaponId`) REFERENCES `weapon`(`id`);  
+  ADD FOREIGN KEY (`weaponId`) REFERENCES `weapon`(`id`);
 
 COMMIT;
 
