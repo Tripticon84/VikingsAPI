@@ -33,8 +33,16 @@ CREATE TABLE `viking` (
   `attack` int NOT NULL,
   `defense` int NOT NULL,
   `health` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+;
 
+
+CREATE TABLE `weapon`(
+  `id` int NOT NULL,
+  `type` varchar(25) NOT NULL,
+  `damage` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+;
 --
 -- Déchargement des données de la table `viking`
 --
@@ -44,6 +52,12 @@ INSERT INTO `viking` (`id`, `name`, `attack`, `defense`, `health`) VALUES
 (2, 'Floki', 150, 80, 350),
 (3, 'Lagertha', 300, 200, 200),
 (4, 'Björn', 350, 200, 100);
+
+INSERT INTO `weapon` (`id`, `type`, `damage`) VALUES
+(1, 'Spear', 80),
+(2, 'Great Sword', 300),
+(3, 'Sword', 100 ),
+(4, 'Axe', 150);
 
 --
 -- Index pour les tables déchargées
@@ -55,6 +69,8 @@ INSERT INTO `viking` (`id`, `name`, `attack`, `defense`, `health`) VALUES
 ALTER TABLE `viking`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `weapon`
+  ADD PRIMARY KEY (`id`);
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
@@ -64,6 +80,9 @@ ALTER TABLE `viking`
 --
 ALTER TABLE `viking`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  ALTER TABLE `weapon`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
