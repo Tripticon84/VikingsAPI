@@ -11,3 +11,20 @@ function findOneWeapon(string $id) {
     }
     return null;
 }
+
+function findAllWeapons (string $type = "", int $limit = 10, int $offset = 0) {
+    $db = getDatabaseConnection();
+    $params = [];
+    $sql = "SELECT id, type, damage FROM weapon";
+    if ($type) {
+        $sql .= " WHERE type LIKE %:type%";
+        $params['type'] = $type;
+    }
+    $sql .= " LIMIT $limit OFFSET $offset ";
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute($params);
+    if ($res) {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return null;
+}
