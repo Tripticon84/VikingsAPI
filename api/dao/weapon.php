@@ -28,3 +28,14 @@ function findAllWeapons (string $type = "", int $limit = 10, int $offset = 0) {
     }
     return null;
 }
+
+function deleteWeapon(string $id) {
+    $db = getDatabaseConnection();
+    $sql = "DELETE FROM weapon WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute(['id' => $id]);
+    if ($res) {
+        return $stmt->rowCount();
+    }
+    return null;
+}
