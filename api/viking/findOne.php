@@ -17,4 +17,10 @@ $viking = findOneViking($_GET['id']);
 if (!$viking) {
     returnError(404, 'Viking not found');
 }
+
+if ($viking['weaponId']) {
+    $viking['weapon']="/weapon/findOne.php?id=".$viking['weaponId'];
+}else {
+    $viking['weapon']="";
+}
 echo json_encode($viking);

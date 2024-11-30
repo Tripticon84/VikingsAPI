@@ -29,4 +29,14 @@ if (isset($_GET['offset'])) {
 }
 
 $vikings = findAllVikings($name, $limit, $offset);
+
+foreach ($vikings as $viking) { 
+    if ($viking['weaponId']) {
+        $viking['weapon']="/weapon/findOne.php?id=".$viking['weaponId'];
+    }else {
+        $viking['weapon']="";
+    }
+    unset($viking['weaponId']);
+}
+unset ($viking);
 echo json_encode($vikings);
