@@ -91,6 +91,12 @@ ALTER TABLE `viking`
 ALTER TABLE `viking`
   ADD FOREIGN KEY (`weaponId`) REFERENCES `weapon`(`id`);
 
+
+-- Liason d'armes aux vikings
+UPDATE `viking` SET `weaponId` = 4 WHERE `id` = 1;
+UPDATE `viking` SET `weaponId` = 3 WHERE `id` = 2;
+UPDATE `viking` SET `weaponId` = 2 WHERE `id` = 3;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
