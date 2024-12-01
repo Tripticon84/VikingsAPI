@@ -64,14 +64,12 @@ function deleteViking(string $id) {
 
 function addWeapon(string $weaponId,$id){
     $db = getDatabaseConnection();
-    $sql = "UPDATE viking SET weaponId=:weaponId WHERE id = :id";
+    $sql = "UPDATE viking SET weaponId = :weaponId WHERE id = :id";
     $stmt = $db->prepare($sql);
-    $res = $stmt->execute(
-        [
+    $res = $stmt->execute([
             'weaponId' => $weaponId,
             'id'=>$id
-        ]
-    );
+        ]);
     if ($res) {
         return $stmt->rowCount();
     }
