@@ -61,3 +61,19 @@ function deleteViking(string $id) {
     }
     return null;
 }
+
+function addWeapon(string $weaponId,$id){
+    $db = getDatabaseConnection();
+    $sql = "UPDATE viking SET weaponId=:weaponId WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute(
+        [
+            'weaponId' => $weaponId,
+            'id'=>$id
+        ]
+    );
+    if ($res) {
+        return $stmt->rowCount();
+    }
+    return null;
+}
