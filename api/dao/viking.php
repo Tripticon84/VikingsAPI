@@ -75,3 +75,16 @@ function addWeapon(string $weaponId,$id){
     }
     return null;
 }
+function findByWeapon(int $weaponId , int $limit = 10, int $offset = 0){
+    $db = getDatabaseConnection();
+    $params = [];
+    $sql = "SELECT name,id FROM viking where weaponId=:weaponID  LIMIT $limit OFFSET $offset ";
+    $params['weaponID'] = $weaponId;
+    $stmt = $db->prepare($sql);
+    $res = $stmt->execute($params);
+    if ($res) {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return null;
+}
+

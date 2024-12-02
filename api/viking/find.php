@@ -31,12 +31,25 @@ if (isset($_GET['offset'])) {
 $vikings = findAllVikings($name, $limit, $offset);
 
 foreach ($vikings as $viking) { 
+     
     if ($viking['weaponId']) {
-        $viking['weapon']="/weapon/findOne.php?id=".$viking['weaponId'];
+        $result[] = [
+            "id" => $viking['id'],
+            "name" => $viking['name'],
+            "attack" => $viking['attack'],
+            "defense" => $viking['defense'],
+            "health" => $viking['health'],
+            "weapon" => "/weapon/findOne.php?id=".$viking['weaponId']
+        ]; 
     }else {
-        $viking['weapon']="";
+        $result[] = [
+            "id" => $viking['id'],
+            "name" => $viking['name'],
+            "attack" => $viking['attack'],
+            "defense" => $viking['defense'],
+            "health" => $viking['health'],
+            "weapon" => ""
+        ];
     }
-    unset($viking['weaponId']);
 }
-unset ($viking);
-echo json_encode($vikings);
+echo json_encode($result);
