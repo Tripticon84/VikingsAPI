@@ -1,5 +1,10 @@
 # TP Vikings
 
+## Methode de travail
+
+Nous avons travaille en simultané grace a github et nous avons séparé le travail en part égale.
+Nous avons aussi fait le bonus. Chacun d'entre nous a aussi fait une partie du coté "administratif" c'est a dire écrire les requetes postman, exporter le fichier sql et écrire le readMe.
+
 ## Modalités
 
 Ce TP est à faire par **groupes de 3**.
