@@ -29,11 +29,11 @@ function findAllVikings (string $name = "", int $limit = 10, int $offset = 0) {
     return null;
 }
 
-function createViking(string $name, string $weaponId, int $health, int $attack, int $defense) {
+function createViking(string $name, $weaponId, int $health, int $attack, int $defense) {
     $db = getDatabaseConnection();
     $sql = "INSERT INTO viking (name, weaponId, health, attack, defense) VALUES (:name, :weaponId, :health, :attack, :defense)";
     $stmt = $db->prepare($sql);
-    $res = $stmt->execute(['name' => $name, 'weaponId' => $weaponId ? $weaponId : "NULL", 'health' => $health, 'attack' => $attack, 'defense' => $defense]);
+    $res = $stmt->execute(['name' => $name, 'weaponId' => $weaponId ? $weaponId : NULL, 'health' => $health, 'attack' => $attack, 'defense' => $defense]);
     if ($res) {
         return $db->lastInsertId();
     }
@@ -62,13 +62,13 @@ function deleteViking(string $id) {
     return null;
 }
 
-function addWeapon(string $weaponId,$id){
+function addWeapon($weaponId,$id){
     $db = getDatabaseConnection();
     $sql = "UPDATE viking SET weaponId = :weaponId WHERE id = :id";
     $stmt = $db->prepare($sql);
     $res = $stmt->execute([
             'weaponId' => $weaponId,
-            'id'=>$id
+            'id'=> $id
         ]);
     if ($res) {
         return $stmt->rowCount();
@@ -87,4 +87,3 @@ function findByWeapon(int $weaponId , int $limit = 10, int $offset = 0){
     }
     return null;
 }
-

@@ -16,6 +16,7 @@ if (validateMandatoryParams($data, ['type', 'damage'])) {
     verifyWeapon($data);
 
     $newWeaponId = createWeapon($data['type'], $data['damage']);
+
     if (!$newWeaponId) {
         returnError(500, 'Could not create the weapon');
     }

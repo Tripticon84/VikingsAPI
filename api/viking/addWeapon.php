@@ -15,7 +15,7 @@ $data = getBody();
 $id = intval($_GET['id']);
 
 if (validateMandatoryParams($data, ['weaponId', 'id'])) {
-    $addweapon = addWeapon($_GET['weaponId'], $_GET['id']);
+    $addweapon = addWeapon($data['weaponId'], $data['id']);
     if ($addweapon == 1) {
         http_response_code(204);
     } elseif ($addweapon == 0) {

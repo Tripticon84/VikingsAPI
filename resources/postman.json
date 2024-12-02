@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "276c1d68-05f7-434a-896f-6dc11a5420ae",
+		"_postman_id": "f07ba1b5-320f-45b7-a4fc-d464fbbc69de",
 		"name": "Vikings API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "10929818"
+		"_exporter_id": "34368772"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Björn\",\n    \"attack\": 350,\n    \"health\": 100,\n    \"defense\": 200\n}",
+							"raw": "{\n    \"name\": \"Viking1\",\n    \"attack\": 350,\n    \"health\": 100,\n    \"defense\": 200\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,9 +24,37 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}/viking/create.php",
+							"raw": "localhost/api/viking/create.php",
 							"host": [
-								"{{HOST}}"
+								"localhost"
+							],
+							"path": [
+								"api",
+								"viking",
+								"create.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create avec weaponId",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Vikin2\",\n    \"weaponId\": \"2\",\n    \"attack\": 350,\n    \"health\": 100,\n    \"defense\": 200\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/viking/create.php",
+							"host": [
+								"localhost"
 							],
 							"path": [
 								"viking",
@@ -43,7 +71,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Björn\",\n    \"attack\": 350,\n    \"health\": 100,\n    \"defense\": 200\n}",
+							"raw": "{\n    \"name\": \"Björn\",\n    \"attack\": 35,\n    \"health\": 10,\n    \"defense\": 20\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,11 +79,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}/viking/update.php?id=1",
+							"raw": "localhost/api/viking/update.php?id=1",
 							"host": [
-								"{{HOST}}"
+								"localhost"
 							],
 							"path": [
+								"api",
 								"viking",
 								"update.php"
 							],
@@ -70,16 +99,45 @@
 					"response": []
 				},
 				{
+					"name": "Add Weapon",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"weaponId\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/viking/addWeapon.php",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"viking",
+								"addWeapon.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Find one",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/viking/findOne.php?id=1",
+							"raw": "localhost/api/viking/findOne.php?id=1",
 							"host": [
-								"{{HOST}}"
+								"localhost"
 							],
 							"path": [
+								"api",
 								"viking",
 								"findOne.php"
 							],
@@ -99,17 +157,209 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/viking/find.php?limit=1",
+							"raw": "localhost/api/viking/find.php?name=&limit=4&offset=2",
 							"host": [
-								"{{HOST}}"
+								"localhost"
 							],
 							"path": [
+								"api",
 								"viking",
 								"find.php"
 							],
 							"query": [
 								{
+									"key": "name",
+									"value": ""
+								},
+								{
 									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "offset",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/viking/delete.php?id=2",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"viking",
+								"delete.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by weapon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/viking/findByWeapon.php?weaponId=1&limit=1&offset=1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"viking",
+								"findByWeapon.php"
+							],
+							"query": [
+								{
+									"key": "weaponId",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Weapon",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"Arme1\",\n    \"damage\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/weapon/create.php",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"weapon",
+								"create.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"Arme1_1\",\n    \"damage\": 31\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/weapon/update.php?id=1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"weapon",
+								"update.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/weapon/findOne.php?id=1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"weapon",
+								"findOne.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/weapon/find.php?name=&limit=5&offset=1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"weapon",
+								"find.php"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
 									"value": "1"
 								}
 							]
@@ -123,13 +373,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/viking/delete.php",
+							"raw": "localhost/api/weapon/delete.php?id=4",
 							"host": [
-								"{{HOST}}"
+								"localhost"
 							],
 							"path": [
-								"viking",
+								"api",
+								"weapon",
 								"delete.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
 							]
 						}
 					},
