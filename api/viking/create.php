@@ -20,6 +20,7 @@ if (validateMandatoryParams($data, ['name', 'weaponId', 'health', 'attack', 'def
     verifyViking($data);
 
     if (findOneWeapon($data['weaponId'])) {
+
         $newVikingId = createViking($data['name'], $data['weaponId'], $data['health'], $data['attack'], $data['defense']);
         if (!$newVikingId) {
             returnError(500, 'Could not create the viking');
@@ -27,7 +28,7 @@ if (validateMandatoryParams($data, ['name', 'weaponId', 'health', 'attack', 'def
         echo json_encode(['id' => $newVikingId]);
         http_response_code(201);
     } else {
-        returnError(400, 'WeaponId not exist');
+        returnError(400, 'WeaponId does not exist');
     }
 } else {
     returnError(412, 'Mandatory parameters : name, health, attack, defense');
