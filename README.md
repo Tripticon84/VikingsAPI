@@ -1,5 +1,9 @@
 # TP Vikings
 
+- **Yann CORDONNIER**
+- **Mathieu TRAN**
+- **Mathieu BERTIN**
+
 ## Methode de travail
 
 Nous avons travaille en simultané grace a github et nous avons séparé le travail en part égale.
